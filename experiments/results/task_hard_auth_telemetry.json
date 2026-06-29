@@ -1,0 +1,180 @@
+{
+  "summary": {
+    "total_input_tokens": 16957,
+    "total_output_tokens": 14748,
+    "total_cost_usd": 0.192576,
+    "total_calls": 18
+  },
+  "by_role": {
+    "product_manager": {
+      "input_tokens": 260,
+      "output_tokens": 214,
+      "cost_usd": 8.4e-05,
+      "calls_count": 1
+    },
+    "architect": {
+      "input_tokens": 562,
+      "output_tokens": 1557,
+      "cost_usd": 0.025041,
+      "calls_count": 1
+    },
+    "developer": {
+      "input_tokens": 8567,
+      "output_tokens": 3477,
+      "cost_usd": 0.002247,
+      "calls_count": 8
+    },
+    "reviewer": {
+      "input_tokens": 7568,
+      "output_tokens": 9500,
+      "cost_usd": 0.165204,
+      "calls_count": 8
+    }
+  },
+  "calls": [
+    {
+      "timestamp": "2026-06-29T10:56:42Z",
+      "agent_role": "product_manager",
+      "model_used": "gemini-2.0-flash-lite",
+      "input_tokens": 260,
+      "output_tokens": 214,
+      "cost_usd": 8.4e-05
+    },
+    {
+      "timestamp": "2026-06-29T10:57:09Z",
+      "agent_role": "architect",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 562,
+      "output_tokens": 1557,
+      "cost_usd": 0.025041
+    },
+    {
+      "timestamp": "2026-06-29T10:58:35Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 325,
+      "output_tokens": 398,
+      "cost_usd": 0.000192
+    },
+    {
+      "timestamp": "2026-06-29T10:59:06Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 822,
+      "output_tokens": 2047,
+      "cost_usd": 0.033171
+    },
+    {
+      "timestamp": "2026-06-29T10:59:08Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 365,
+      "output_tokens": 309,
+      "cost_usd": 0.00016
+    },
+    {
+      "timestamp": "2026-06-29T10:59:15Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 799,
+      "output_tokens": 534,
+      "cost_usd": 0.010407
+    },
+    {
+      "timestamp": "2026-06-29T10:59:37Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 361,
+      "output_tokens": 337,
+      "cost_usd": 0.000171
+    },
+    {
+      "timestamp": "2026-06-29T11:00:00Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 828,
+      "output_tokens": 1316,
+      "cost_usd": 0.022224
+    },
+    {
+      "timestamp": "2026-06-29T11:00:02Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 927,
+      "output_tokens": 507,
+      "cost_usd": 0.000295
+    },
+    {
+      "timestamp": "2026-06-29T11:00:19Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 1019,
+      "output_tokens": 1087,
+      "cost_usd": 0.019362
+    },
+    {
+      "timestamp": "2026-06-29T11:00:21Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 732,
+      "output_tokens": 390,
+      "cost_usd": 0.000229
+    },
+    {
+      "timestamp": "2026-06-29T11:00:33Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 930,
+      "output_tokens": 796,
+      "cost_usd": 0.01473
+    },
+    {
+      "timestamp": "2026-06-29T11:00:44Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 1666,
+      "output_tokens": 476,
+      "cost_usd": 0.000357
+    },
+    {
+      "timestamp": "2026-06-29T11:01:10Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 1034,
+      "output_tokens": 1701,
+      "cost_usd": 0.028617
+    },
+    {
+      "timestamp": "2026-06-29T11:01:17Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 2395,
+      "output_tokens": 651,
+      "cost_usd": 0.0005
+    },
+    {
+      "timestamp": "2026-06-29T11:01:35Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 1211,
+      "output_tokens": 1256,
+      "cost_usd": 0.022473
+    },
+    {
+      "timestamp": "2026-06-29T11:01:37Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 1796,
+      "output_tokens": 409,
+      "cost_usd": 0.000343
+    },
+    {
+      "timestamp": "2026-06-29T11:01:47Z",
+      "agent_role": "reviewer",
+      "model_used": "claude-sonnet-4-6",
+      "input_tokens": 925,
+      "output_tokens": 763,
+      "cost_usd": 0.01422
+    }
+  ]
+}

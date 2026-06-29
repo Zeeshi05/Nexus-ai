@@ -1,0 +1,11 @@
+google-generativeai
+anthropic
+python-dotenv
+tiktoken
+pytest
+fastapi
+uvicorn
+sqlalchemy
+aiosqlite
+pandas
+matplotlib

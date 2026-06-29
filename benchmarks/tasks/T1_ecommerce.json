@@ -1,0 +1,4 @@
+{
+  "name": "Ecommerce Dashboard",
+  "prompt": "Build a modern client-side Ecommerce Admin Dashboard using HTML5, Vanilla JS, and Vanilla CSS. The application should include: (1) A data store module that tracks store state in memory and localStorage. (2) A mock API module that simulates server response latency and returns products, orders, and sales trends. (3) An SVG chart utility that draws responsive line charts for revenue trends and bar charts for weekly order volumes. (4) An administrative dashboard UI layout showing sales KPI cards (revenue, orders, alerts), a low-stock alert banner, recent orders in a table with status badges, and tabs to view/filter/edit product inventory. Structure into: index.html, css/styles.css, js/store.js, js/api/mockApi.js, js/utils/charts.js, js/utils/dom.js, js/views/dashboard.js, and js/views/products.js."
+}

@@ -1,0 +1,148 @@
+{
+  "summary": {
+    "total_input_tokens": 7605,
+    "total_output_tokens": 6199,
+    "total_cost_usd": 0.002733,
+    "total_calls": 14
+  },
+  "by_role": {
+    "product_manager": {
+      "input_tokens": 352,
+      "output_tokens": 250,
+      "cost_usd": 0.000101,
+      "calls_count": 1
+    },
+    "architect": {
+      "input_tokens": 564,
+      "output_tokens": 680,
+      "cost_usd": 0.000246,
+      "calls_count": 1
+    },
+    "developer": {
+      "input_tokens": 3021,
+      "output_tokens": 2283,
+      "cost_usd": 0.001216,
+      "calls_count": 6
+    },
+    "reviewer": {
+      "input_tokens": 3668,
+      "output_tokens": 2986,
+      "cost_usd": 0.00117,
+      "calls_count": 6
+    }
+  },
+  "calls": [
+    {
+      "timestamp": "2026-06-29T11:57:38Z",
+      "agent_role": "product_manager",
+      "model_used": "gemini-2.0-flash-lite",
+      "input_tokens": 352,
+      "output_tokens": 250,
+      "cost_usd": 0.000101
+    },
+    {
+      "timestamp": "2026-06-29T11:57:41Z",
+      "agent_role": "architect",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 564,
+      "output_tokens": 680,
+      "cost_usd": 0.000246
+    },
+    {
+      "timestamp": "2026-06-29T11:57:42Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 155,
+      "output_tokens": 160,
+      "cost_usd": 8e-05
+    },
+    {
+      "timestamp": "2026-06-29T11:57:45Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 383,
+      "output_tokens": 225,
+      "cost_usd": 9.6e-05
+    },
+    {
+      "timestamp": "2026-06-29T11:57:46Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 172,
+      "output_tokens": 191,
+      "cost_usd": 9.4e-05
+    },
+    {
+      "timestamp": "2026-06-29T11:57:49Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 431,
+      "output_tokens": 283,
+      "cost_usd": 0.000117
+    },
+    {
+      "timestamp": "2026-06-29T11:57:50Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 366,
+      "output_tokens": 296,
+      "cost_usd": 0.000155
+    },
+    {
+      "timestamp": "2026-06-29T11:57:55Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 525,
+      "output_tokens": 530,
+      "cost_usd": 0.000198
+    },
+    {
+      "timestamp": "2026-06-29T11:57:57Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 669,
+      "output_tokens": 673,
+      "cost_usd": 0.000336
+    },
+    {
+      "timestamp": "2026-06-29T11:58:01Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 902,
+      "output_tokens": 793,
+      "cost_usd": 0.000306
+    },
+    {
+      "timestamp": "2026-06-29T11:58:05Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 470,
+      "output_tokens": 507,
+      "cost_usd": 0.00025
+    },
+    {
+      "timestamp": "2026-06-29T11:58:11Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 737,
+      "output_tokens": 626,
+      "cost_usd": 0.000243
+    },
+    {
+      "timestamp": "2026-06-29T11:58:13Z",
+      "agent_role": "developer",
+      "model_used": "gemini-2.0-flash",
+      "input_tokens": 1189,
+      "output_tokens": 456,
+      "cost_usd": 0.000301
+    },
+    {
+      "timestamp": "2026-06-29T11:58:17Z",
+      "agent_role": "reviewer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 690,
+      "output_tokens": 529,
+      "cost_usd": 0.00021
+    }
+  ]
+}

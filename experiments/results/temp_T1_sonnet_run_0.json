@@ -1,0 +1,66 @@
+{
+  "summary": {
+    "total_input_tokens": 10814,
+    "total_output_tokens": 4133,
+    "total_cost_usd": 0.00205,
+    "total_calls": 6
+  },
+  "by_role": {
+    "developer": {
+      "input_tokens": 10814,
+      "output_tokens": 4133,
+      "cost_usd": 0.00205,
+      "calls_count": 6
+    }
+  },
+  "calls": [
+    {
+      "timestamp": "2026-06-29T11:48:38Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 334,
+      "output_tokens": 619,
+      "cost_usd": 0.000211
+    },
+    {
+      "timestamp": "2026-06-29T11:48:41Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 960,
+      "output_tokens": 577,
+      "cost_usd": 0.000245
+    },
+    {
+      "timestamp": "2026-06-29T11:48:46Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 1544,
+      "output_tokens": 349,
+      "cost_usd": 0.00022
+    },
+    {
+      "timestamp": "2026-06-29T11:48:49Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 1900,
+      "output_tokens": 719,
+      "cost_usd": 0.000358
+    },
+    {
+      "timestamp": "2026-06-29T11:48:53Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 2626,
+      "output_tokens": 817,
+      "cost_usd": 0.000442
+    },
+    {
+      "timestamp": "2026-06-29T11:48:58Z",
+      "agent_role": "developer",
+      "model_used": "gemini-3.1-flash-lite",
+      "input_tokens": 3450,
+      "output_tokens": 1052,
+      "cost_usd": 0.000574
+    }
+  ]
+}

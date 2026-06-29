@@ -1,0 +1,4 @@
+{
+  "name": "Data pipeline",
+  "prompt": "Build a modular data engineering pipeline using Python, Pandas, and Matplotlib. The pipeline should: (1) Ingest raw store sales transactions from a CSV file. (2) Filter data anomalies, missing values, and negative pricing. (3) Aggregate monthly revenues, average order values, and category popularity statistics. (4) Render sales charts (line chart for monthly revenue trends and pie chart for category shares) saved as PNG images. (5) Export computed metrics to summary CSV files. (6) Build unit tests verifying calculations. Structure the pipeline into: pipeline/ingest.py, pipeline/clean.py, pipeline/aggregate.py, pipeline/plot.py, pipeline/export.py, pipeline/utils.py, tests/test_clean.py, tests/test_aggregate.py, run_pipeline.py, and requirements.txt."
+}

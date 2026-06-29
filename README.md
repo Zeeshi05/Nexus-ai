@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXUS AI: Heterogeneous Multi-Agent Software Development Pipeline
 
-## Getting Started
+NEXUS AI is a hierarchical multi-agent framework designed to automate full-stack software development. It leverages a heterogeneous model swarm that allocates planning and review tasks to high-reasoning models (Claude 3.5 Sonnet) while offloading high-volume code synthesis tasks to low-cost models (Gemini Flash), optimizing cost, speed, and codebase correctness.
 
-First, run the development server:
+---
 
+## 🚀 5-Step Installation & Quickstart
+
+Follow these 5 steps to get the pipeline up and running:
+
+### 1. Clone & Navigate to Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/nexus-ai.git
+cd nexus-ai
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+Ensure you have Python 3.9+ installed, then install required packages:
+```bash
+pip install -r requirements.txt
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configure API Credentials
+Create a `.env.local` file in the root directory (or copy `.env.example`) and add your Anthropic and Gemini API keys:
+```bash
+cp .env.example .env.local
+# Open and edit .env.local to include your keys:
+# GOOGLE_AI_API_KEY="AI..."
+# ANTHROPIC_API_KEY="sk-ant-..."
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the Pipeline
+Execute the main orchestrator pipeline on a sample task (e.g., building a dashboard):
+```bash
+python core/pipeline.py --task "build a simple task manager web app" --output-dir output
+```
 
-## Learn More
+### 5. Run Automated Evaluations (Benchmarks)
+Run the automated benchmark runner to evaluate cost metrics and correction loops on easy/hard tasks:
+```bash
+python benchmarks/evaluate.py
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Repository Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+nexus-ai/
+├── core/                        ← Pipeline orchestrator & agents
+│   ├── agents/                  ← Role specialized agents (PM, Architect, Developer, Reviewer)
+│   ├── graph/                   ← DAG planner & Context routing engine
+│   ├── loop/                    ← Progressive correction loop with MD5 detection
+│   └── telemetry/               ← Token counters and cost calculations
+├── benchmarks/                  ← Evaluation and baseline runners
+│   ├── tasks/                   ← Benchmark task definitions (JSON)
+│   ├── baselines/               ← Monolithic baseline scripts
+│   └── evaluate.py              ← Automated evaluation runner
+├── frontend/                    ← Next.js interface for local visual playground
+├── experiments/                 ← Evaluation results, logs, and cost reports
+└── paper/                       ← LaTeX research paper draft sources
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

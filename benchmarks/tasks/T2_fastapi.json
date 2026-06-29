@@ -1,0 +1,4 @@
+{
+  "name": "REST API backend",
+  "prompt": "Build a secure REST API backend using Python, FastAPI, and SQLite. The application must feature: (1) Token-based JWT authentication with username/password login. (2) Role-based access control (Admin vs User permissions). (3) CRUD routes for products, orders, and users. (4) SQLite database integration using SQLAlchemy ORM (async session handling). (5) Database schema migrations/setup script with seed data. (6) Comprehensive route testing using pytest and FastAPI TestClient. Structure the project into: main.py, config.py, database.py, models.py, schemas.py, auth.py, routes/users.py, routes/products.py, routes/orders.py, tests/conftest.py, tests/test_auth.py, tests/test_products.py, and requirements.txt."
+}

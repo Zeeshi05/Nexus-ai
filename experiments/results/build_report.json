@@ -1,0 +1,91 @@
+{
+  "task": "build an ecommerce dashboard",
+  "stats": {
+    "approved_first_try": 3,
+    "corrected_1x": 1,
+    "corrected_2x": 1,
+    "hash_convergence": 0,
+    "max_retries": 1,
+    "total_files": 6
+  },
+  "telemetry": {
+    "total_cost": 0.754779,
+    "total_tokens": 157991,
+    "role_breakdown": {
+      "product_manager": {
+        "input_tokens": 179,
+        "output_tokens": 179,
+        "cost_usd": 6.7e-05,
+        "calls_count": 1
+      },
+      "architect": {
+        "input_tokens": 518,
+        "output_tokens": 1325,
+        "cost_usd": 0.021429,
+        "calls_count": 1
+      },
+      "developer": {
+        "input_tokens": 56180,
+        "output_tokens": 27447,
+        "cost_usd": 0.016598,
+        "calls_count": 12
+      },
+      "reviewer": {
+        "input_tokens": 30480,
+        "output_tokens": 41683,
+        "cost_usd": 0.716685,
+        "calls_count": 11
+      }
+    }
+  },
+  "correction_events": [
+    {
+      "file": "data/mockApi.js",
+      "attempt": 1,
+      "reviewer_feedback": "Please apply all of the following fixes to data/mockApi.js:\n\n1. **ID counter**: Replace the `products.length + 1` ID strategy in `addProduct` with a module-level `let productIdCounter = products.length + 1` counter that increments with `productIdCounter++` on each call, so IDs remain unique after deletions.\n\n2. **Reject on not-found / invalid input**: Add a `simulateError(message)` helper that returns `new Promise((_, reject) => setTimeout(() => reject(new Error(message)), 100))`. Use it instead of `simulateDelay(null)` / `simulateDelay(false)` in `updateProduct`, `deleteProduct`, and `updateOrderStatus` when the record is not found, and in all validation failure paths.\n\n3. **Status validation in updateOrderStatus**: Define `const VALID_STATUSES = ['Pending', 'Shipped', 'Delivered']` at module level. In `updateOrderStatus`, call `simulateError(...)` if `!VALID_STATUSES.includes(status)`. Apply the same check in `getOrders` for the `statusFilter` parameter (when it is not `'All'`).\n\n4. **Input sanitisation in addProduct**: Only copy the known fields (`name`, `category`, `price`, `stock`) into `newProduct` \u2014 never spread the raw caller object. Validate that `name` and `category` are non-empty strings, `price` is a non-negative number, and `stock` is a non-negative integer; reject with `simulateError` otherwise.\n\n5. **Input sanitisation in updateProduct**: Build a `sanitizedChanges` object by explicitly copying only the allowed fields (`name`, `category`, `price`, `stock`) after validating each one. Explicitly `delete sanitizedChanges.id` as a safety net. Reject with `simulateError` on any invalid field value.\n\n6. **Deep-enough copies on read**: In `getProducts`, `getOrders`, `getCustomers`, and `getSalesData`, return `array.map(item => ({ ...item }))` instead of `[...array]` so callers cannot mutate the internal store objects.\n\n7. **Immutable update in updateOrderStatus**: Replace `orders[index].status = status` with `orders[index] = { ...orders[index], status }` so the stored object is replaced rather than mutated in place.",
+      "hash_before": "7f768046ce1718f47c32efe6cb686978",
+      "hash_after": "bcd37933ad9c7eb2437b63862b778b2f",
+      "termination_reason": "continuing"
+    },
+    {
+      "file": "data/mockApi.js",
+      "attempt": 2,
+      "reviewer_feedback": "The file is incomplete and entirely missing its implementation. Please rewrite data/mockApi.js as a complete, valid ES6 module addressing every point below:\n\n1. COMPLETE THE DATA: Finish the monthlySalesData array with all 12 months (Oct, Nov, Dec entries are missing). Ensure all four data arrays (products, orders, customers, monthlySalesData) are syntactically complete.\n\n2. IMPLEMENT ALL EXPORTED ASYNC FUNCTIONS \u2014 each must return a Promise that resolves after exactly 100 ms (use a shared `delay(ms)` helper with setTimeout). Export all functions as named ES6 exports:\n   - getSalesData(): resolves with a shallow copy of monthlySalesData array.\n   - getProducts(): resolves with a shallow copy of the products array (each item spread-copied).\n   - addProduct(product): validates that name (non-empty string), category (non-empty string), price (non-negative number), and stock (non-negative integer) are present and valid \u2014 throw a descriptive Error if not. Assign a new unique id (e.g. maintain a module-level counter), push to the array, resolve with a copy of the new product.\n   - updateProduct(id, changes): find product by id \u2014 throw Error if not found. Validate any provided fields (name, category, price, stock) with the same rules as addProduct. Apply only the provided fields. Resolve with a copy of the updated product.\n   - deleteProduct(id): find product by id \u2014 throw Error if not found. Splice it out. Resolve with a copy of the deleted product.\n   - getOrders(statusFilter): if statusFilter is provided and non-empty, validate it is one of 'Pending'|'Shipped'|'Delivered' \u2014 throw Error if not. Return filtered (or all) orders as shallow copies.\n   - updateOrderStatus(id, status): validate status is one of 'Pending'|'Shipped'|'Delivered' \u2014 throw Error if not. Find order by id \u2014 throw Error if not found. Update status. Resolve with a copy of the updated order.\n   - getCustomers(): resolves with a shallow copy of the customers array (each item spread-copied).\n\n3. DEFENSIVE COPIES: Every function must return spread-copied objects/arrays (e.g. `{ ...product }`, `orders.map(o => ({ ...o }))`) so callers cannot mutate internal store state.\n\n4. INPUT SANITISATION: In addProduct and updateProduct, coerce string fields with String(value).trim() before storing, to prevent leading/trailing whitespace and reduce XSS surface when values are later rendered.\n\n5. VALID STATUS CONSTANT: Define a module-level constant `const VALID_STATUSES = ['Pending', 'Shipped', 'Delivered']` and use it in both getOrders and updateOrderStatus validation.\n\n6. NO OTHER CHANGES: Do not alter the existing data arrays' content or structure.",
+      "hash_before": "bcd37933ad9c7eb2437b63862b778b2f",
+      "hash_after": "7621e30774c18c18efd244863b9d1cc8",
+      "termination_reason": "continuing"
+    },
+    {
+      "file": "app/charts.js",
+      "attempt": 1,
+      "reviewer_feedback": "1. Replace every `var(--...)` CSS custom property string used as a canvas fillStyle or strokeStyle with a concrete colour literal (e.g. '#333', '#ddd', 'rgba(99,132,255,0.2)', '#fff'). Canvas 2D does not resolve CSS variables.\n2. Guard against a single data point: compute xScale as `months.length > 1 ? innerWidth / (months.length - 1) : innerWidth`.\n3. Guard against maxRevenue <= 0: show a 'No revenue data' message and return early before computing yScale.\n4. Wrap `await getSalesData()` in a try/catch and render an error message on the canvas if it rejects.\n5. Scale mouse coordinates: multiply `(e.clientX - rect.left)` by `canvas.width / rect.width` and `(e.clientY - rect.top)` by `canvas.height / rect.height`.\n6. Store event handler references on the canvas element (e.g. `canvas._salesChartMouseMove`) and call removeEventListener before adding new ones to prevent duplicate listeners on repeated calls.\n7. Separate the fill path from the stroke path: build a `linePath` (Path2D) for the visible line only, then build an `areaPath` (Path2D) that extends linePath with the closing baseline segments. Call `ctx.fill(areaPath)` then `ctx.stroke(linePath)` separately.\n8. Derive canvas width from `canvas.parentElement.clientWidth` (with fallback) rather than `canvas.offsetWidth` to avoid a 0-width canvas before layout.\n9. Round Y-axis label values with Math.round() before calling toLocaleString().\n10. Skip the vertical grid line for i===0 (it overlaps the y-axis).",
+      "hash_before": "b0494e0a11c9f2eb4b6efe9adb82b119",
+      "hash_after": "d1f0b869baec814ef6dde028ced2c8f6",
+      "termination_reason": "continuing"
+    },
+    {
+      "file": "app/charts.js",
+      "attempt": 2,
+      "reviewer_feedback": "1. Fix the single-data-point xScale: change `const xScale = months.length > 1 ? innerWidth / (months.length - 1) : innerWidth;` to `const xScale = months.length > 1 ? innerWidth / (months.length - 1) : innerWidth / 2;` and introduce a `dataX(i)` helper that returns `originX + i * xScale` for multi-point data and `originX + xScale` (the centred position) for single-point data. Use `dataX(i)` everywhere instead of `originX + i * xScale`.\n2. Fix the areaPath construction: after `areaPath.moveTo(firstX, originY)` immediately add `areaPath.lineTo(firstX, firstY)` before the forEach loop, and skip index 0 inside the loop.\n3. Add an `isValidEntry` type-guard that checks each salesData element has a string `month` and a finite number `revenue`; call `drawMessage` and return early if validation fails.\n4. Guard `innerWidth <= 0 || innerHeight <= 0` after computing padding-derived values and call `drawMessage` + return.\n5. In `handleMouseMove`, clamp the computed index with `Math.min(Math.max(..., 0), salesData.length - 1)` instead of relying on the else branch.\n6. Ensure every drawing sub-block explicitly sets its own `fillStyle`/`strokeStyle` rather than relying on previously set values.",
+      "hash_before": "d1f0b869baec814ef6dde028ced2c8f6",
+      "hash_after": "6658abb7468dd62259d5c812c4cc01b2",
+      "termination_reason": "continuing"
+    },
+    {
+      "file": "app/charts.js",
+      "attempt": 3,
+      "reviewer_feedback": "The file is critically broken \u2014 it is syntactically incomplete (truncated mid-expression) and contains none of the required chart logic. Rewrite charts.js in full:\n\n1. Complete the canvas sizing line: `canvas.height = canvas.parentElement?.clientHeight || 400;`\n2. Define layout constants (PADDING object, chartWidth, chartHeight, GRID_LINES, POINT_RADIUS, TOOLTIP_WIDTH, TOOLTIP_HEIGHT).\n3. Show a 'Loading\u2026' message via drawMessage, then call `await getSalesData()` inside a try/catch; on error call drawMessage and return.\n4. Validate the returned array is non-empty and every item has `{ month: string, revenue: number }` shape.\n5. Compute yMin/yMax with 10% padding; guard against yRange === 0.\n6. Implement toX(index) and toY(value) coordinate helpers.\n7. Implement drawGrid() \u2014 dashed horizontal lines at GRID_LINES intervals.\n8. Implement drawAxes() \u2014 solid L-shaped X/Y axes.\n9. Implement drawYLabels() \u2014 formatted dollar amounts on the Y axis.\n10. Implement drawXLabels() \u2014 month strings on the X axis.\n11. Implement drawAxisTitles() \u2014 'Month' below X axis, rotated 'Revenue ($)' beside Y axis.\n12. Implement drawFilledLine() \u2014 gradient-filled area + solid stroke line.\n13. Implement drawPoints() \u2014 white-filled circles with blue stroke at each data point.\n14. Compose all of the above in a draw() function and call it once.\n15. Implement getHoveredIndex(mouseX) that finds the nearest point within half a segment width.\n16. Implement drawTooltip(index) that renders a rounded-rect box with month and formatted revenue; clamp the box so it never overflows the canvas edges.\n17. Attach mousemove and mouseleave listeners; store references on canvas._salesChartMouseMove / canvas._salesChartMouseLeave and remove old ones before attaching to prevent duplicate handlers on re-render.\n18. Scale mouse clientX by (canvas.width / rect.width) to handle CSS-scaled canvases correctly.",
+      "hash_before": "6658abb7468dd62259d5c812c4cc01b2",
+      "hash_after": "1f16289a00a1df70c4e2ef8a181a7e8a",
+      "termination_reason": "max_retries"
+    },
+    {
+      "file": "index.html",
+      "attempt": 1,
+      "reviewer_feedback": "1. Remove the bare <script type='module' src='app/dashboard.js'></script> tag entirely. Keep only the single inline module script that imports initDashboard and calls it on DOMContentLoaded. Having both causes the module to initialise twice.\n2. Remove the Font Awesome CDN <link> tag. The project must remain dependency-free; use CSS-only or inline SVG icons instead.\n3. Replace class-based hiding of #modal-overlay with the HTML 'hidden' attribute so it is invisible even without CSS.\n4. Replace the placeholder.com avatar src with an empty string or a local asset; do not make third-party network requests in static HTML.\n5. Change nav href values from bare '#' to meaningful fragment identifiers ('#overview', '#inventory', etc.).\n6. Add role='dialog', aria-modal='true', and aria-labelledby='modal-title' to #modal-overlay.\n7. Remove the static .loading-spinner div from inside #main-content; JS owns that container's content.\n8. Add explicit width and height attributes to the avatar <img> element.",
+      "hash_before": "6adaf0936d1c5dfc6e6a92a4cd736458",
+      "hash_after": "2348c9c11fcd614afdedddf73c7ab652",
+      "termination_reason": "continuing"
+    }
+  ]
+}
