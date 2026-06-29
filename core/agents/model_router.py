@@ -24,9 +24,17 @@ OFFICIAL_MODEL_MAPPING = {
 class ModelRouter:
     """Manages routing of agent roles to specific LLM models, rate limits, and fallback paths."""
     def __init__(self, custom_routing: Dict[str, str] = None):
+        import os
         self.routing = dict(DEFAULT_MODEL_ROUTING)
         if custom_routing:
             self.routing.update(custom_routing)
+            
+        # Pre-emptively detect missing/invalid Anthropic credentials
+        anthropic_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("ADMIN_AGENT_ROUTER_KEY") or ""
+        if not anthropic_key or not anthropic_key.startswith("sk-ant-"):
+            logger.info("No valid Anthropic API key detected. Pre-emptively routing all agents (including Architect and Reviewer) to Google Gemini.")
+            self.routing["architect"] = "gemini-2.0-flash-lite"
+            self.routing["reviewer"] = "gemini-2.0-flash-lite"
 
     def route(self, agent_role: str) -> str:
         """Return the target model name for a given agent role."""
